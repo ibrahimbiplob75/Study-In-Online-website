@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/login.svg';
-
-
 import Swal from 'sweetalert2';
 import { useContext } from 'react';
 import { AuthProvider } from '../../ContextProvider/ContextProvider';
+import axios from 'axios';
 
 const Register = () => {
   const {userSignUp}=useContext(AuthProvider);
@@ -30,6 +29,20 @@ const Register = () => {
               showConfirmButton: false,
               timer: 1500,
             });
+            axios
+              .post("http://localhost:5000/users", {
+                name: name,
+                user_name: user_name,
+                email: email,
+                photo: photo,
+                password: password,
+              })
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
           })
           .catch(() => {
             Swal.fire({

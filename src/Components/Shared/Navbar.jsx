@@ -16,17 +16,17 @@ const Navbar = () => {
         </li>
         <li>
           <Link className="text-xl font-inter" to="/">
-            About
+            Assignment
           </Link>
         </li>
         <li>
           <Link className="text-xl font-inter" to="/">
-            Service
+            Submitted
           </Link>
         </li>
         <li>
           <Link className="text-xl font-inter" to="/">
-            Blog
+            Result
           </Link>
         </li>
         <li>
@@ -85,6 +85,24 @@ const Navbar = () => {
                   className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
                 >
                   {list}
+                  <li>
+                    <div className="dropdown">
+                      <label tabIndex={0} className="btn m-1">
+                        Click
+                      </label>
+                      <ul
+                        tabIndex={0}
+                        className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+                      >
+                        <li>
+                          <a>Item 1</a>
+                        </li>
+                        <li>
+                          <a>Item 2</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
                 </ul>
               </div>
               <Link className="normal-case  text-xl w-3/4 lg:w-1/3">
@@ -92,40 +110,46 @@ const Navbar = () => {
               </Link>
             </div>
             <div className="navbar-center hidden lg:flex">
-              <ul className="menu menu-horizontal px-1">{list}</ul>
+              <ul className="menu menu-horizontal px-1">
+                
+                {list}
+              </ul>
             </div>
 
             <div className="navbar-end">
-              {user ?
-              <div className="dropdown dropdown-end ml-3">
-                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    <img src={user_avatar} />
-                  </div>
-                </label>
-                <ul
-                  tabIndex={0}
-                  className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
-                >
-                  <li>
-                    <a className="justify-between">
-                      Profile
-                      <span className="badge">New</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a>Settings</a>
-                  </li>
-                  <li>{<Link onClick={logOut}>Logout</Link>}</li>
-                </ul>
-              </div>
-              :
-              <Link to="/register">
-                <button className="btn btn-outline btn-error ml-3">
-                  SignUp
-                </button>
-              </Link>
-              }
+              {user ? (
+                <div className="dropdown dropdown-end ml-3">
+                  <label
+                    tabIndex={0}
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10 rounded-full">
+                      <img src={user_avatar} />
+                    </div>
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      <a className="justify-between">
+                        Profile
+                        <span className="badge">New</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>Settings</a>
+                    </li>
+                    <li>{<Link onClick={logOut}>Logout</Link>}</li>
+                  </ul>
+                </div>
+              ) : (
+                <Link to="/register">
+                  <button className="btn btn-outline btn-error ml-3">
+                    SignUp
+                  </button>
+                </Link>
+              )}
               <div className="m-5">
                 <input type="checkbox" className="toggle toggle-lg" />
               </div>
