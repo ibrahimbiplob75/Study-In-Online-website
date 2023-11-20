@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import logo from '../../assets/login.svg'
+import logo from '../../assets/login.svg';
 
 
 import Swal from 'sweetalert2';

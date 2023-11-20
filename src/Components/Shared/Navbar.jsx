@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import user_avatar from "../../assets/user.jpg";
 import logo from "../../assets/logoStudy.png"
+import { useContext } from "react";
+import { AuthProvider } from "../../ContextProvider/ContextProvider";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, userLogout } = useContext(AuthProvider);
     const list = (
       <>
         <li>
@@ -33,8 +37,27 @@ const Navbar = () => {
       </>
     );
 
-
-    const logOut = () => {};
+      console.log(user);
+    const logOut = () => {
+        userLogout().then(()=>{
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 2500
+          })
+          window.location.reload();
+        })
+        .catch(() => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
+        })
+    };
     return (
       <div>
         <div>
@@ -73,6 +96,7 @@ const Navbar = () => {
             </div>
 
             <div className="navbar-end">
+              {user ?
               <div className="dropdown dropdown-end ml-3">
                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                   <div className="w-10 rounded-full">
@@ -92,15 +116,16 @@ const Navbar = () => {
                   <li>
                     <a>Settings</a>
                   </li>
-                  <li>{ <Link onClick={logOut}>Logout</Link> }</li>
+                  <li>{<Link onClick={logOut}>Logout</Link>}</li>
                 </ul>
               </div>
-
+              :
               <Link to="/register">
                 <button className="btn btn-outline btn-error ml-3">
                   SignUp
                 </button>
               </Link>
+              }
               <div className="m-5">
                 <input type="checkbox" className="toggle toggle-lg" />
               </div>
