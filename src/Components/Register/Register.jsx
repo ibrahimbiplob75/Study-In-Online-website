@@ -3,9 +3,11 @@ import logo from '../../assets/login.svg'
 
 
 import Swal from 'sweetalert2';
+import { useContext } from 'react';
+import { AuthProvider } from '../../ContextProvider/ContextProvider';
 
 const Register = () => {
-
+  const {userSignUp}=useContext(AuthProvider);
 
 
     const handleRegister=(event)=>{
@@ -19,10 +21,10 @@ const Register = () => {
         const password=data.get("password");
         console.log(name, user_name,email,photo,password);
 
-        registerWithemail(email, password)
+        userSignUp(email, password)
           .then(() => {
             Swal.fire({
-              position: "top-center",
+              position: "center",
               icon: "success",
               title: "You have registered Successfully",
               showConfirmButton: false,

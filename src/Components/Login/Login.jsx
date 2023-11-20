@@ -5,10 +5,12 @@ import logo from "../../assets/login.svg";
 
 import Swal from "sweetalert2";
 import axios from "axios";
+import { AuthProvider } from "../../ContextProvider/ContextProvider";
+import { useContext } from "react";
 
 
 const Login = () => {
- 
+    const {userSignIn}=useContext(AuthProvider);
     const location=useLocation();
     const Navigate=useNavigate();
 
@@ -19,7 +21,7 @@ const Login = () => {
         const email = data.get("email");
         const password = data.get("password");
         
-        signInWithemail(email, password)
+        userSignIn(email, password)
           .then(() => {
             Swal.fire({
               position: "center",
@@ -28,16 +30,19 @@ const Login = () => {
               showConfirmButton: false,
               timer: 1500,
             });
-            const user={email};
-            axios.post("https://car-service-server-ctf7bl1pp-md-ibrahim-biplobs-projects.vercel.app/jwt",user,{withCredentials:true})
-            .then(res=>{
+            const user = { email };
+            axios
+              .post(
+                "",
+                user,
+                { withCredentials: true }
+              )
+              .then((res) => {
                 console.log(res.data);
-                if(res.data.success){
+                if (res.data.success) {
                   Navigate(location?.state ? location?.state : "/");
                 }
-            });
-            
-
+              });
           })
           .catch(() => {
             Swal.fire({
