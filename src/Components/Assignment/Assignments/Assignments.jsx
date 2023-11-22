@@ -4,17 +4,19 @@ import Assignment from "./Assignment";
 
 const Assignments = () => {
     const assignments=useLoaderData();
+    const handleUpdate = (_id) => {
+      console.log(_id);
+    };
+    const handleDelete = (_id) => {
+      console.log(_id);
+    };
     return (
       <div>
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto m-4">
           <table className="table">
             <thead>
               <tr>
-                <th>
-                  <label>
-                    <input type="checkbox" className="checkbox" />
-                  </label>
-                </th>
+                <th></th>
                 <th>Title</th>
                 <th>Description</th>
                 <th>level</th>
@@ -24,12 +26,16 @@ const Assignments = () => {
             </thead>
             <tbody>
               {assignments.map((assign) => (
-                <Assignment key={assign._id} assign={assign}></Assignment>
+                <Assignment
+                  key={assign._id}
+                  assign={assign}
+                  handleDelete={handleDelete}
+                  handleUpdate={handleUpdate}
+                ></Assignment>
               ))}
             </tbody>
           </table>
         </div>
-        ;
       </div>
     );
 };

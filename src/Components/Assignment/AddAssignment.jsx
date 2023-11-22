@@ -9,6 +9,8 @@ import { AuthProvider } from "../../ContextProvider/ContextProvider";
 const AddAssignment = () => {
     const [startDate, setStartDate] = useState(new Date());
     const {user}=useContext(AuthProvider)
+
+
     const handleAddAssignment = (event) => {
          event.preventDefault();
 
@@ -21,6 +23,7 @@ const AddAssignment = () => {
         const date = startDate;
         const photo=form.photo.value;
         const userEmail=user.email;
+        const TaskBy=user?.name;
 
          axios
            .post("http://localhost:5000/assignments", {
@@ -31,6 +34,7 @@ const AddAssignment = () => {
              level,
              date,
              photo,
+             TaskBy,
            })
            .then((res) => {
              if (res.data.insertedId) {
@@ -52,6 +56,8 @@ const AddAssignment = () => {
            });
          
     };
+
+    
   return (
     <div>
       <div className="bg-[#F4F3F0] p-24">

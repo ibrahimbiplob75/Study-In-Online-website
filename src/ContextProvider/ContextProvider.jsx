@@ -6,17 +6,21 @@ import propTypes from "prop-types";
 export const AuthProvider=createContext(null);
 const ContextProvider = ({children}) => {
     const [user,setUser]=useState(null);
+    const [Loader,setLoader]=useState(true);
 
 
     const userSignUp=(email,password)=>{
+      setLoader(true);
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     const userSignIn=(email,password)=>{
+      setLoader(true);
         return signInWithEmailAndPassword(auth,email,password);
     }
 
     const userLogout=()=>{
+      setLoader(true);
        return signOut(auth);
     }
 
@@ -27,6 +31,7 @@ const ContextProvider = ({children}) => {
           (currentUser) => {
             if (currentUser) {
               setUser(currentUser);
+              setLoader(false);
             }
           }
         );
@@ -40,6 +45,7 @@ const ContextProvider = ({children}) => {
       userSignUp,
       userSignIn,
       userLogout,
+      Loader,
     };
     return (
         <AuthProvider.Provider value={authInfo}>

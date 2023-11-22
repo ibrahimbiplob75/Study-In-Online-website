@@ -1,7 +1,15 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { AuthProvider } from "../../../ContextProvider/ContextProvider";
 
-const Assignment = ({ assign }) => {
-  const { title, level, mark, date, photo, description, TaskBy } = assign;
+const Assignment = ({ assign, handleDelete, handleUpdate }) => {
+  const { user } = useContext(AuthProvider);
+  const LoogeduserEmail = user.email;
+  const assignmentUser = assign.userEmail;
+
+  
+
+  const { _id, title, level, mark, date, photo, description, TaskBy } = assign;
   return (
     <tr>
       <th>
@@ -30,19 +38,35 @@ const Assignment = ({ assign }) => {
       <td>{level}</td>
       <td>{date}</td>
       <th>
-        <button className="btn btn-xs ml-2 sm:btn-sm md:btn-md lg:btn-lg">
-          Update
-        </button>
-        <button className="btn btn-xs ml-2 mt-2 sm:btn-sm md:btn-md lg:btn-lg">
-          Delete
-        </button>
+        {LoogeduserEmail == assignmentUser ? (
+          <div>
+            <button
+              onClick={() => handleUpdate(_id)}
+              className="btn text-yellow-200 bg-yellow-700 btn-xs ml-2 sm:btn-sm md:btn-md lg:btn-lg"
+            >
+              Update
+            </button>
+            <button
+              onClick={() => handleDelete(_id)}
+              className="btn text-red-200 bg-red-700 btn-xs ml-2 sm:btn-sm md:btn-md lg:btn-lg"
+            >
+              Delete
+            </button>
+          </div>
+        ) : (
+          <button className="btn text-green-200 bg-green-700 btn-xs ml-2 mt-2 sm:btn-sm md:btn-md lg:btn-lg">
+            Submit Task
+          </button>
+        )}
       </th>
     </tr>
   );
 };
 
-Assignment.propTypes={
-    assign:PropTypes.obj
-}
+Assignment.propTypes = {
+  assign: PropTypes.obj,
+  handleDelete: PropTypes.func,
+  handleUpdate: PropTypes.func,
+};
 
 export default Assignment;

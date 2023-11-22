@@ -11,6 +11,7 @@ import ContextProvider from './ContextProvider/ContextProvider.jsx';
 import AddAssignment from './Components/Assignment/AddAssignment.jsx';
 import Assignments from './Components/Assignment/Assignments/Assignments.jsx';
 import Submission from './Components/Assignment/Submission/Submission.jsx';
+import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -23,16 +24,28 @@ const router = createBrowserRouter([
       },
       {
         path: "/assignment",
-        element: <AddAssignment></AddAssignment>,
+        element: (
+          <PrivateRoute>
+            <AddAssignment></AddAssignment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/allAssignment",
-        element: <Assignments></Assignments>,
+        element: (
+          <PrivateRoute>
+            <Assignments></Assignments>
+          </PrivateRoute>
+        ),
         loader: () => fetch("http://localhost:5000/assignments"),
       },
       {
         path: "/submission",
-        element: <Submission></Submission>,
+        element: (
+          <PrivateRoute>
+            <Submission></Submission>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",

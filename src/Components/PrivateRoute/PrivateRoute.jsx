@@ -1,14 +1,15 @@
 import { useContext } from "react";
-import { ContextProvider } from "../../AuthContext/AuthContext";
+
 import { Navigate, useLocation } from "react-router-dom";
 import propTypes from "prop-types"
+import { AuthProvider } from "../../ContextProvider/ContextProvider";
 
 
 const PrivateRoute = ({children}) => {
-    const {user,loader}=useContext(ContextProvider);
+    const {user,Loader}=useContext(AuthProvider);
     const location=useLocation();
     
-    if(loader){
+    if(Loader){
        
          <div className="text-center m-20">
            <progress className="progress w-56 "></progress>
