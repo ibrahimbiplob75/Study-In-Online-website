@@ -9,29 +9,40 @@ import Login from "../src/Components/Login/Login.jsx"
 import Register from "../src/Components/Register/Register.jsx"
 import ContextProvider from './ContextProvider/ContextProvider.jsx';
 import AddAssignment from './Components/Assignment/AddAssignment.jsx';
+import Assignments from './Components/Assignment/Assignments/Assignments.jsx';
+import Submission from './Components/Assignment/Submission/Submission.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
-    children:[
+    children: [
       {
-        path:"/",
-        element:<Home></Home>
+        path: "/",
+        element: <Home></Home>,
       },
       {
-        path:"/assignment",
-        element:<AddAssignment></AddAssignment>
+        path: "/assignment",
+        element: <AddAssignment></AddAssignment>,
       },
       {
-        path:"/login",
-        element:<Login></Login>
+        path: "/allAssignment",
+        element: <Assignments></Assignments>,
+        loader: () => fetch("http://localhost:5000/assignments"),
       },
       {
-        path:"/register",
-        element:<Register></Register>
-      }
-    ]
+        path: "/submission",
+        element: <Submission></Submission>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
   },
 ]);
 

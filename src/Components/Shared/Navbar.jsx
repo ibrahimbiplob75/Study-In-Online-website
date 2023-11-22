@@ -16,17 +16,17 @@ const Navbar = () => {
         </li>
         <li>
           <Link className="text-xl font-inter" to="/assignment">
+            Create Assignment
+          </Link>
+        </li>
+        <li>
+          <Link className="text-xl font-inter" to="/allAssignment">
             Assignment
           </Link>
         </li>
         <li>
-          <Link className="text-xl font-inter" to="/">
-            Submitted
-          </Link>
-        </li>
-        <li>
-          <Link className="text-xl font-inter" to="/">
-            Result
+          <Link className="text-xl font-inter" to="/submission">
+            Submission
           </Link>
         </li>
         <li>
