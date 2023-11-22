@@ -1,11 +1,14 @@
 import axios from "axios";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import Swal from "sweetalert2";
+import { AuthProvider } from "../../ContextProvider/ContextProvider";
 
 const AddAssignment = () => {
     const [startDate, setStartDate] = useState(new Date());
+    const {user}=useContext(AuthProvider)
     const handleAddAssignment = (event) => {
          event.preventDefault();
 
@@ -17,14 +20,36 @@ const AddAssignment = () => {
         const level=form.level.value;
         const date = startDate;
         const photo=form.photo.value;
-        
-         const assignment = { title, mark, description, level, date, photo };
-         console.log(assignment);
+        const userEmail=user.email;
 
-         axios.post("")
-         .then(()=>{
-
-         })
+         axios
+           .post("http://localhost:5000/assignments", {
+             userEmail,
+             title,
+             mark,
+             description,
+             level,
+             date,
+             photo,
+           })
+           .then((res) => {
+             if (res.data.insertedId) {
+               Swal.fire({
+                 title: "Success!",
+                 text: "Your have added Assignment Successfully",
+                 icon: "success",
+                 confirmButtonText: "Ok",
+               });
+             }
+           })
+           .catch(() => {
+             Swal.fire({
+               icon: "error",
+               title: "Oops...",
+               text: "Something went wrong!",
+               footer: '<a href="#">Why do I have this issue?</a>',
+             });
+           });
          
     };
   return (
