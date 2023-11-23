@@ -10,18 +10,18 @@ const ContextProvider = ({children}) => {
 
 
     const userSignUp=(email,password)=>{
-      setLoader(true);
+        setLoader(true);
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     const userSignIn=(email,password)=>{
-      setLoader(true);
+        setLoader(true);
         return signInWithEmailAndPassword(auth,email,password);
     }
 
     const userLogout=()=>{
-      setLoader(true);
-       return signOut(auth);
+        setLoader(true);
+        return signOut(auth);
     }
 
 

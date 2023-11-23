@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { AuthProvider } from "../../../ContextProvider/ContextProvider";
+import { Link } from "react-router-dom";
 
 const Assignment = ({ assign, handleDelete, handleUpdate }) => {
   const { user } = useContext(AuthProvider);
@@ -40,12 +41,14 @@ const Assignment = ({ assign, handleDelete, handleUpdate }) => {
       <th>
         {LoogeduserEmail == assignmentUser ? (
           <div>
-            <button
-              onClick={() => handleUpdate(_id)}
-              className="btn text-yellow-200 bg-yellow-700 btn-xs ml-2 sm:btn-sm md:btn-md lg:btn-lg"
-            >
-              Update
-            </button>
+            <Link to={`/updateAssignment/${_id}`}>
+              <button
+                onClick={() => handleUpdate(_id)}
+                className="btn text-yellow-200 bg-yellow-700 btn-xs ml-2 sm:btn-sm md:btn-md lg:btn-lg"
+              >
+                Update
+              </button>
+            </Link>
             <button
               onClick={() => handleDelete(_id)}
               className="btn text-red-200 bg-red-700 btn-xs ml-2 sm:btn-sm md:btn-md lg:btn-lg"

@@ -10,15 +10,12 @@ const PrivateRoute = ({children}) => {
     const location=useLocation();
     
     if(Loader){
-       
          <div className="text-center m-20">
            <progress className="progress w-56 "></progress>
          </div>
-       
-
     }
 
-    if(user?.email){
+    if(user){
         return children;
     }
     
@@ -32,7 +29,7 @@ const PrivateRoute = ({children}) => {
 };
 
 PrivateRoute.propTypes={
-    children:propTypes.object,
+    children:propTypes.node,
 }
 
 export default PrivateRoute;
