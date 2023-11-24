@@ -10,7 +10,7 @@ import { useContext } from "react";
 
 
 const Login = () => {
-    const {userSignIn}=useContext(AuthProvider);
+    const { userSignIn, GmailLogin } = useContext(AuthProvider);
     const location=useLocation();
     const Navigate=useNavigate();
 
@@ -32,17 +32,43 @@ const Login = () => {
             });
             const user = { email };
             axios
-              .post(
-                "",
-                user,
-                { withCredentials: true }
-              )
+              .post("http://localhost:5000/jwt", user, {
+                withCredentials: true,
+              })
               .then((res) => {
                 console.log(res.data);
                 if (res.data.success) {
                   Navigate(location?.state ? location?.state : "/");
                 }
               });
+          })
+          .catch(() => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Something went wrong!",
+              footer: '<a href="#">Why do I have this issue?</a>',
+            });
+          });
+    }
+
+    const googleLogin=()=>{
+        GmailLogin()
+          .then(() => {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "You have Loged-in Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            const user = {  };
+            axios.post("", user, { withCredentials: true }).then((res) => {
+              console.log(res.data);
+              if (res.data.success) {
+                Navigate(location?.state ? location?.state : "/");
+              }
+            });
           })
           .catch(() => {
             Swal.fire({
@@ -100,7 +126,7 @@ const Login = () => {
                 </div>
               </form>
               <p className="text-center m-6">
-                Not Register yet ? Please {" "}
+                Not Register yet ? Please{" "}
                 <Link
                   to="/register"
                   className="text-2xl text-bold text-green-600"
@@ -108,6 +134,11 @@ const Login = () => {
                   Register
                 </Link>{" "}
               </p>
+
+              <button onClick={()=>googleLogin()} className="btn mb-3">
+                
+                Google Login
+              </button>
             </div>
           </div>
         </div>
