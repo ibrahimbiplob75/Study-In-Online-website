@@ -10,9 +10,10 @@ import Register from "../src/Components/Register/Register.jsx"
 import ContextProvider from './ContextProvider/ContextProvider.jsx';
 import AddAssignment from './Components/Assignment/AddAssignment.jsx';
 import Assignments from './Components/Assignment/Assignments/Assignments.jsx';
-import Submission from './Components/Assignment/Submission/Submission.jsx';
+import Submissions from './Components/Assignment/Submission/Submissions.jsx';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx';
 import UpdateAssignment from './Components/Assignment/Assignments/UpdateAssignment.jsx';
+import SubmitForm from './Components/Assignment/Submission/SubmitForm.jsx';
 
 const router = createBrowserRouter([
   {
@@ -44,9 +45,10 @@ const router = createBrowserRouter([
         path: "/submission",
         element: (
           <PrivateRoute>
-            <Submission></Submission>
+            <Submissions></Submissions>
           </PrivateRoute>
         ),
+        loader: () => fetch("http://localhost:5000/submited"),
       },
       {
         path: "/updateAssignment/:id",
@@ -55,6 +57,12 @@ const router = createBrowserRouter([
             <UpdateAssignment></UpdateAssignment>
           </PrivateRoute>
         ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/assignments/${params.id}`),
+      },
+      {
+        path: "/assingment/submit/:id",
+        element: <SubmitForm></SubmitForm>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/assignments/${params.id}`),
       },

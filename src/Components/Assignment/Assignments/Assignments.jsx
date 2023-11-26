@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const Assignments = () => {
     const assignments=useLoaderData();
+    console.log(assignments);
     const handleUpdate = (_id) => {
       axios.patch(`http://localhost:5000/assignments/${_id}`)
       .then(res=> console.log(res.data));

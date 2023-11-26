@@ -57,9 +57,11 @@ const Assignment = ({ assign, handleDelete, handleUpdate }) => {
             </button>
           </div>
         ) : (
-          <button className="btn text-green-200 bg-green-700 btn-xs ml-2 mt-2 sm:btn-sm md:btn-md lg:btn-lg">
-            Submit Task
-          </button>
+          <Link to={`/assingment/submit/${_id}`}>
+            <button className="btn text-green-200 bg-green-700 btn-xs ml-2 mt-2 sm:btn-sm md:btn-md lg:btn-lg">
+              Submit Task
+            </button>
+          </Link>
         )}
       </th>
     </tr>
