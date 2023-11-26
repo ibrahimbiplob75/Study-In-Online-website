@@ -32,6 +32,7 @@ const SubmitForm = () => {
     const form = event.target;
     const title = form.title.value;
     const userEmail = user.email;
+    const ass_id=data._id;
     const submitterBy = user?.displayName;
     const docFile = form.docFile;
 
@@ -45,8 +46,10 @@ const SubmitForm = () => {
     axios
       .post("http://localhost:5000/assignments/submit", {
         title,
+        ass_id,
         userEmail,
         pdfFile,
+
       })
       .then((res) => {
         console.log(res);

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthProvider } from "../../../ContextProvider/ContextProvider";
 import { Link } from "react-router-dom";
 
@@ -7,6 +7,25 @@ const Assignment = ({ assign, handleDelete, handleUpdate }) => {
   const { user } = useContext(AuthProvider);
   const LoogeduserEmail = user.email;
   const assignmentUser = assign.userEmail;
+  const [submitted ,setSubmitted]=useState(false);
+
+  useEffect(()=>{
+    fetch("http://localhost:5000/submited")
+    .then(res=>res.json())
+    .then(data => {
+      console.log("check",data );
+      data.forEach((submission) => {
+        if (assign._id === submission.ass_id ) {
+          console.log("submitted");
+          setSubmitted(true);
+        }
+      });
+    })
+    .catch((error)=>{
+      console.log(error);
+    });
+
+  },[])
 
   
 
@@ -57,11 +76,21 @@ const Assignment = ({ assign, handleDelete, handleUpdate }) => {
             </button>
           </div>
         ) : (
-          <Link to={`/assingment/submit/${_id}`}>
-            <button className="btn text-green-200 bg-green-700 btn-xs ml-2 mt-2 sm:btn-sm md:btn-md lg:btn-lg">
-              Submit Task
-            </button>
-          </Link>
+          <div>
+            {submitted ? (
+              <Link to={`/submission`}>
+                <button className="btn text-green-200 bg-slate-400 btn-xs ml-2 mt-2 sm:btn-sm md:btn-md lg:btn-lg">
+                  See Result
+                </button>
+              </Link>
+            ) : (
+              <Link to={`/assingment/submit/${_id}`}>
+                <button className="btn text-green-200 bg-green-700 btn-xs ml-2 mt-2 sm:btn-sm md:btn-md lg:btn-lg">
+                  Submit Task
+                </button>
+              </Link>
+            )}
+          </div>
         )}
       </th>
     </tr>
