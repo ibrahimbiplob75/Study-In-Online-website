@@ -48,7 +48,7 @@ const ContextProvider = ({children}) => {
         // if user exists then issue a token
         if (currentUser) {
           axios
-            .post("http://localhost:5000/jwt", loggedUser, {
+            .post("https://friends-group-study-server.vercel.app/jwt", loggedUser, {
               withCredentials: true,
             })
             .then((res) => {
@@ -56,7 +56,7 @@ const ContextProvider = ({children}) => {
             });
         } else {
           axios
-            .post("http://localhost:5000/logout", loggedUser, {
+            .post("https://friends-group-study-server.vercel.app/logout", loggedUser, {
               withCredentials: true,
             })
             .then((res) => {

@@ -32,7 +32,7 @@ const Login = () => {
             });
             const user = { email };
             axios
-              .post("http://localhost:5000/jwt", user, {
+              .post("https://friends-group-study-server.vercel.app/jwt", user, {
                 withCredentials: true,
               })
               .then((res) => {

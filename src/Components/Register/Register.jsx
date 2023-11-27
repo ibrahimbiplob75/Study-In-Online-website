@@ -30,7 +30,7 @@ const Register = () => {
               timer: 1500,
             });
             axios
-              .post("http://localhost:5000/users", {
+              .post("https://friends-group-study-server.vercel.app/users", {
                 name: name,
                 user_name: user_name,
                 email: email,
