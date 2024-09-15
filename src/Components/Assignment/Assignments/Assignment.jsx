@@ -10,7 +10,7 @@ const Assignment = ({ assign, handleDelete, handleUpdate }) => {
   const [submitted ,setSubmitted]=useState(false);
 
   useEffect(()=>{
-    fetch("https://friends-group-study-server.vercel.app/submited",{credentials:"include"})
+    fetch("http://localhost:5000/submited",{credentials:"include"})
     .then(res=>res.json())
     .then(data => {
       console.log("check",data );

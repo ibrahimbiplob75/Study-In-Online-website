@@ -8,7 +8,7 @@ const Assignments = () => {
     const assignments=useLoaderData();
     console.log(assignments);
     const handleUpdate = (_id) => {
-      axios.patch(`https://friends-group-study-server.vercel.app/assignments/${_id}`)
+      axios.patch(`http://localhost:5000/assignments/${_id}`)
       .then(res=> console.log(res.data));
     };
     const handleDelete = (_id) => {
@@ -26,7 +26,7 @@ const Assignments = () => {
       {
         if (result.isConfirmed){
           axios
-            .delete(`https://friends-group-study-server.vercel.app/assignments/${_id}`)
+            .delete(`http://localhost:5000/assignments/${_id}`)
             .then(function (response) {
               if (response) {
                 Swal.fire({

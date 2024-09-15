@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/login.svg';
 import Swal from 'sweetalert2';
 import { useContext } from 'react';
@@ -6,6 +6,7 @@ import { AuthProvider } from '../../ContextProvider/ContextProvider';
 import axios from 'axios';
 
 const Register = () => {
+  const Navigate=useNavigate()
   const {userSignUp}=useContext(AuthProvider);
 
 
@@ -30,7 +31,7 @@ const Register = () => {
               timer: 1500,
             });
             axios
-              .post("https://friends-group-study-server.vercel.app/users", {
+              .post("http://localhost:5000/users", {
                 name: name,
                 user_name: user_name,
                 email: email,
@@ -39,6 +40,7 @@ const Register = () => {
               })
               .then(function (response) {
                 console.log(response);
+                Navigate("/")
               })
               .catch(function (error) {
                 console.log(error);

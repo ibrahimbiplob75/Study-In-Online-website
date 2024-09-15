@@ -44,7 +44,7 @@ const SubmitForm = () => {
    formData.append("submitterBy", submitterBy);
 
     axios
-      .post("https://friends-group-study-server.vercel.app/assignments/submit", {
+      .post("http://localhost:5000/assignments/submit", {
         title,
         ass_id,
         userEmail,

@@ -27,7 +27,7 @@ const UpdateAssignment = () => {
       const TaskBy = user?.name;
 
       axios
-        .patch(`https://friends-group-study-server.vercel.app/assignments/${update._id}`, {
+        .patch(`http://localhost:5000/assignments/${update._id}`, {
           userEmail,
           title,
           mark,

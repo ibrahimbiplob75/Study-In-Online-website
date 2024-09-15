@@ -12,7 +12,7 @@ const Submissions = () => {
                 <th></th>
                 <th>Title</th>
                 <th>User Email</th>
-                <th>Rsult</th>
+                <th>Result</th>
               </tr>
             </thead>
             <tbody>

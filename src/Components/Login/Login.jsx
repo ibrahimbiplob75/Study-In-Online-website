@@ -32,7 +32,7 @@ const Login = () => {
             });
             const user = { email };
             axios
-              .post("https://friends-group-study-server.vercel.app/jwt", user, {
+              .post("http://localhost:5000/jwt", user, {
                 withCredentials: true,
               })
               .then((res) => {
@@ -55,6 +55,7 @@ const Login = () => {
     const googleLogin=()=>{
         GmailLogin()
           .then(() => {
+            Navigate(location?.state ? location?.state : "/");
             Swal.fire({
               position: "center",
               icon: "success",

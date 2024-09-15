@@ -26,7 +26,7 @@ const AddAssignment = () => {
         const TaskBy=user?.name;
 
          axios
-           .post("https://friends-group-study-server.vercel.app/assignments", {
+           .post("http://localhost:5000/assignments", {
              userEmail,
              title,
              mark,

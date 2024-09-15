@@ -40,7 +40,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          fetch("https://friends-group-study-server.vercel.app/assignments", {
+          fetch("http://localhost:5000/assignments", {
             credentials: "include",
           }),
       },
@@ -52,7 +52,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          fetch("https://friends-group-study-server.vercel.app/submited", {
+          fetch("http://localhost:5000/submited", {
             credentials: "include",
           }),
       },
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://friends-group-study-server.vercel.app/assignments/${params.id}`,
+            `http://localhost:5000/assignments/${params.id}`,
             { credentials: "include" }
           ),
       },
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
         element: <SubmitForm></SubmitForm>,
         loader: ({ params }) =>
           fetch(
-            `https://friends-group-study-server.vercel.app/assignments/${params.id}`,
+            `http://localhost:5000/assignments/${params.id}`,
             { credentials:"include" }
           ),
       },
